@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, Router, Route, BrowserRouter } from 'react-router-dom';
-import VocaUpdate from './VocaUpdate';
+import VocaUpdate from '../pages/VocaUpdate';
 // import { TiTickOutline, TiTick, TiEdit, TiTimes } from 'react-icons/ti';
 
 const VocaListItem = ({ voca, onRemove, onUpdate }) => {

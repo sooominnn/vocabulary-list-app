@@ -1,17 +1,7 @@
-import React, { useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 
-const VocaAdd = ({ onInsert }) => {
-  const initialState = {
-    word: '',
-    pronunciation: '',
-    definition: '',
-    exampleEn: '',
-    exampleKo: '',
-  };
-
+const VocaAdd = ({ dispatch, initialState, setVocas, vocas }) => {
   const [voca, setVoca] = useState(initialState);
-  const navigate = useNavigate();
 
   const onChange = (e) => {
     const value = e.target.value;
@@ -20,11 +10,26 @@ const VocaAdd = ({ onInsert }) => {
     setVoca({ ...voca, [name]: value });
   };
 
+  // const initialState = {
+  //   word: '',
+  //   pronunciation: '',
+  //   definition: '',
+  //   exampleEn: '',
+  //   exampleKo: '',
+  // };
+
   const onSubmit = (e) => {
     e.preventDefault();
-    onInsert(voca);
+    dispatch({
+      type: 'ADD',
+      word: voca.word,
+      pronunciation: voca.pronunciation,
+      definition: voca.definition,
+      exampleEn: voca.exampleEn,
+      exampleKo: voca.exampleKo,
+    });
+
     setVoca(initialState);
-    // navigate.push('/home');
   };
 
   return (

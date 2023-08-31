@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import VocaAdd from './components/VocaAdd';
-import VocaUpdate from './components/VocaUpdate';
-import Home from './components/Home';
+import VocaAdd from './pages/VocaAdd';
+import VocaUpdate from './pages/VocaUpdate';
+import Home from './pages/Home';
 
 const App = () => {
   return (
