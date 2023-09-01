@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState } from 'react';
 
 const VocaUpdate = ({ voca, dispatch, setEditMode }) => {

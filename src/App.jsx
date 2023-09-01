@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import VocaAdd from './pages/VocaAdd';

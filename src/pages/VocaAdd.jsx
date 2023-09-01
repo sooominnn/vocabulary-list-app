@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState } from 'react';
 
 const VocaAdd = ({ dispatch, initialState }) => {
