@@ -1,13 +1,11 @@
 /* eslint-disable */
 import React, { useState } from 'react';
-// import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-const VocaUpdate = ({ voca, dispatch, props }) => {
-  // const navigate = useNavigate();
-  // const location = useLocation();
-  // const vocaInfo = { ...location.state };
-
-  // const data = props.location.state;
+const VocaUpdate = ({ voca, dispatch }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const vocaInfo = { ...location.state };
 
   const [content, setContent] = useState(voca);
 
@@ -18,26 +16,12 @@ const VocaUpdate = ({ voca, dispatch, props }) => {
     setContent({ ...voca, [name]: value });
   };
 
-  const update = (e) => {
-    e.preventDefault();
-
-    if (
-      voca.word &&
-      voca.pronunciation &&
-      voca.definition &&
-      voca.exampleEn &&
-      voca.exampleKo
-    ) {
-      dispatch({
-        type: 'EDIT',
-        ...content,
-      });
-      setContent(voca);
-      // setEditMode(false);
-      navigate('/home');
-    } else {
-      window.confirm('입력하지 않은 항목이 있습니다');
-    }
+  const update = () => {
+    dispatch({
+      type: 'EDIT',
+      ...content,
+    });
+    navigate('/home');
   };
 
   return (
@@ -45,14 +29,19 @@ const VocaUpdate = ({ voca, dispatch, props }) => {
       <h1>단어 수정하기</h1>
       <div>
         <h5>단어</h5>
-        <input type='text' name='word' value={voca.word} onChange={onChange} />
+        <input
+          type='text'
+          name='word'
+          value={content.word}
+          onChange={onChange}
+        />
       </div>
       <div>
         <h5>발음</h5>
         <input
           type='text'
           name='pronunciation'
-          value={voca.pronunciation}
+          value={content.pronunciation}
           onChange={onChange}
         />
       </div>
@@ -61,7 +50,7 @@ const VocaUpdate = ({ voca, dispatch, props }) => {
         <input
           type='text'
           name='definition'
-          value={voca.definition}
+          value={content.definition}
           onChange={onChange}
         />
       </div>
@@ -70,7 +59,7 @@ const VocaUpdate = ({ voca, dispatch, props }) => {
         <input
           type='text'
           name='exampleEn'
-          value={voca.exampleEn}
+          value={content.exampleEn}
           onChange={onChange}
         />
       </div>
@@ -79,7 +68,7 @@ const VocaUpdate = ({ voca, dispatch, props }) => {
         <input
           type='text'
           name='exampleKo'
-          value={voca.exampleKo}
+          value={content.exampleKo}
           onChange={onChange}
         />
       </div>
