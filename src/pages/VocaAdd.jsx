@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const VocaAdd = ({ dispatch, initialState, setVocas, vocas }) => {
+const VocaAdd = ({ dispatch, initialState }) => {
   const [voca, setVoca] = useState(initialState);
 
   const onChange = (e) => {
@@ -9,14 +9,6 @@ const VocaAdd = ({ dispatch, initialState, setVocas, vocas }) => {
 
     setVoca({ ...voca, [name]: value });
   };
-
-  // const initialState = {
-  //   word: '',
-  //   pronunciation: '',
-  //   definition: '',
-  //   exampleEn: '',
-  //   exampleKo: '',
-  // };
 
   const onSubmit = (e) => {
     e.preventDefault();

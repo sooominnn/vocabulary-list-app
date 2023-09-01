@@ -1,39 +1,36 @@
 import React, { useState } from 'react';
 
-const VocaUpdate = ({ onInsert }) => {
-  const initialState = {
-    word: '',
-    pronunciation: '',
-    definition: '',
-    exampleEn: '',
-    exampleKo: '',
-  };
+const VocaUpdate = ({ voca, dispatch, setEditMode }) => {
+  const [content, setContent] = useState(voca);
 
-  const [voca, setVoca] = useState(initialState);
   const onChange = (e) => {
     const value = e.target.value;
     const name = e.target.name;
 
-    setVoca({ ...voca, [name]: value });
+    setContent({ ...voca, [name]: value });
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    onInsert(voca);
-    setVoca(initialState);
+  const update = () => {
+    dispatch({ type: 'EDIT', ...content });
+    setEditMode(false);
   };
 
   return (
-    <form>
+    <>
       <h1>단어 수정하기</h1>
       <div>
-        <input type='text' name='word' value={voca.word} onChange={onChange} />
+        <input
+          type='text'
+          name='word'
+          value={content.word}
+          onChange={onChange}
+        />
       </div>
       <div>
         <input
           type='text'
           name='pronunciation'
-          value={voca.pronunciation}
+          value={content.pronunciation}
           onChange={onChange}
         />
       </div>
@@ -41,7 +38,7 @@ const VocaUpdate = ({ onInsert }) => {
         <input
           type='text'
           name='definition'
-          value={voca.definition}
+          value={content.definition}
           onChange={onChange}
         />
       </div>
@@ -49,7 +46,7 @@ const VocaUpdate = ({ onInsert }) => {
         <input
           type='text'
           name='exampleEn'
-          value={voca.exampleEn}
+          value={content.exampleEn}
           onChange={onChange}
         />
       </div>
@@ -57,14 +54,15 @@ const VocaUpdate = ({ onInsert }) => {
         <input
           type='text'
           name='exampleKo'
-          value={voca.exampleKo}
+          value={content.exampleKo}
           onChange={onChange}
         />
       </div>
-      <form onInsert={onInsert}>
-        <button onClick={onSubmit}>저장하기</button>
-      </form>
-    </form>
+      <div>
+        <button onClick={update}>저장하기</button>
+        <button onClick={() => setEditMode(false)}>취소하기</button>
+      </div>
+    </>
   );
 };
 
