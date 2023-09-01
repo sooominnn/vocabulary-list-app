@@ -18,9 +18,9 @@ export default function Home({ voca, dispatch }) {
     <VocaTemplate>
       <VocaList voca={voca} dispatch={dispatch} />
       <VocaAdd dispatch={dispatch} initialState={initialState} />
-      <Link to='/voca/add'>
+      {/* <Link to='/voca/add'>
         <button>+</button>
-      </Link>
+      </Link> */}
     </VocaTemplate>
   );
 }
