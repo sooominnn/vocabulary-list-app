@@ -8,11 +8,7 @@ export default function Home({ voca, dispatch }) {
   return (
     <VocaTemplate>
       <VocaList voca={voca} dispatch={dispatch} />
-      <Link
-        to={{
-          pathname: '/voca/add',
-        }}
-      >
+      <Link to='/voca/add'>
         <button>+</button>
       </Link>
     </VocaTemplate>

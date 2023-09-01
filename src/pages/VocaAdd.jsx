@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const VocaAdd = ({ dispatch }) => {
   const navigate = useNavigate();
@@ -54,9 +54,11 @@ const VocaAdd = ({ dispatch }) => {
     <form>
       <h1>단어 추가하기</h1>
       <div>
+        <h5>단어</h5>
         <input type='text' name='word' value={voca.word} onChange={onChange} />
       </div>
       <div>
+        <h5>발음</h5>
         <input
           type='text'
           name='pronunciation'
@@ -65,6 +67,7 @@ const VocaAdd = ({ dispatch }) => {
         />
       </div>
       <div>
+        <h5>의미</h5>
         <input
           type='text'
           name='definition'
@@ -73,6 +76,7 @@ const VocaAdd = ({ dispatch }) => {
         />
       </div>
       <div>
+        <h5>예문</h5>
         <input
           type='text'
           name='exampleEn'
@@ -81,6 +85,7 @@ const VocaAdd = ({ dispatch }) => {
         />
       </div>
       <div>
+        <h5>해석</h5>
         <input
           type='text'
           name='exampleKo'

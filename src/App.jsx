@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import VocaAdd from './pages/VocaAdd';
 import DetailPage from './pages/DetailPage';
 import { useReducer, useState } from 'react';
+import VocaUpdate from './pages/VocaUpdate';
 
 const App = () => {
   // 단어 list mock 데이터
@@ -74,6 +75,12 @@ const App = () => {
         <Route
           path='/voca/add'
           element={<VocaAdd voca={voca} dispatch={dispatch} />}
+        ></Route>
+      </Routes>
+      <Routes>
+        <Route
+          path='/voca/update'
+          element={<VocaUpdate voca={voca} dispatch={dispatch} />}
         ></Route>
       </Routes>
       <Routes>
