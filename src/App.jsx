@@ -70,12 +70,12 @@ const App = () => {
           element={<Home voca={voca} dispatch={dispatch} />}
         ></Route>
       </Routes>
-      {/* <Routes>
+      <Routes>
         <Route
           path='/voca/add'
           element={<VocaAdd voca={voca} dispatch={dispatch} />}
         ></Route>
-      </Routes> */}
+      </Routes>
       <Routes>
         <Route
           path='/detail/:id'
