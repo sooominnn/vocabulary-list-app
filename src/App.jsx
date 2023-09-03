@@ -79,7 +79,7 @@ const App = () => {
       </Routes>
       <Routes>
         <Route
-          path='/voca/update'
+          path='/voca/update/:id'
           element={<VocaUpdate voca={voca} dispatch={dispatch} />}
         ></Route>
       </Routes>

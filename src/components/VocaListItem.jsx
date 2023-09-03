@@ -1,17 +1,18 @@
 /* eslint-disable */
 // import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const VocaListItem = ({ voca, dispatch }) => {
   const navigate = useNavigate();
   navigate(`/voca/update`, {
-    state: {
+    state: (voca = {
+      id: voca.id,
       word: voca.word,
       pronunciation: voca.pronunciation,
       definition: voca.definition,
       exampleEn: voca.exampleEn,
       exampleKo: voca.exampleKo,
-    },
+    }),
   });
 
   // const [editMode, setEditMode] = useState(false);
@@ -54,7 +55,10 @@ const VocaListItem = ({ voca, dispatch }) => {
       <>
         <div>
           <button>암기 완료</button>
-          <button onClick={() => navigate(`/voca/update`)}>수정하기</button>
+          <Link to={`/voca/update/${id}`} state={{ voca: voca }}>
+            {/* <button onClick={() => navigate(`/voca/update`)}>수정하기</button> */}
+            <button>수정하기</button>
+          </Link>
           <button onClick={() => remove()}>삭제</button>
         </div>
         <div onClick={() => navigate(`/detail/${id}`)}>

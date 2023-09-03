@@ -2,18 +2,23 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-const VocaUpdate = ({ voca, dispatch }) => {
+const VocaUpdate = ({ dispatch }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const vocaInfo = { ...location.state };
+  // console.log(location);
+  const vocaInfo = location.state.voca;
 
-  const [content, setContent] = useState(voca);
+  // useParams를 활용하여 데이터 가져오는 방법
+  // const { id } = useParams();
+  // const vocaInfo = voca.filter((word) => word.id == id);
+
+  const [content, setContent] = useState(vocaInfo);
 
   const onChange = (e) => {
     const value = e.target.value;
     const name = e.target.name;
 
-    setContent({ ...voca, [name]: value });
+    setContent({ ...vocaInfo, [name]: value });
   };
 
   const update = () => {
