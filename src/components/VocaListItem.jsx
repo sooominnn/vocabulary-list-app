@@ -1,22 +1,14 @@
 /* eslint-disable */
-// import React, { useState } from 'react';
+import styled from 'styled-components';
+import { BsCheck, BsX } from 'react-icons/bs';
+import { BiEdit } from 'react-icons/bi';
 import { Link, useNavigate } from 'react-router-dom';
 
 const VocaListItem = ({ voca, dispatch }) => {
   const navigate = useNavigate();
-  navigate(`/voca/update`, {
-    state: (voca = {
-      id: voca.id,
-      word: voca.word,
-      pronunciation: voca.pronunciation,
-      definition: voca.definition,
-      exampleEn: voca.exampleEn,
-      exampleKo: voca.exampleKo,
-    }),
-  });
 
-  // const [editMode, setEditMode] = useState(false);
-  const { id, word, pronunciation, definition, exampleEn, exampleKo } = voca;
+  const { id, checked, word, pronunciation, definition, exampleEn, exampleKo } =
+    voca;
 
   const remove = () => {
     const notice = window.confirm('정말 삭제하시겠습니까?');
@@ -25,54 +17,74 @@ const VocaListItem = ({ voca, dispatch }) => {
     }
   };
 
-  // return (
-  //   <article>
-  //     {!editMode ? (
-  //       <>
-  //         <div>
-  //           <button>암기 완료</button>
-  //           <button onClick={() => setEditMode(true)}>수정하기</button>
-  //           <button onClick={() => remove()}>삭제</button>
-  //         </div>
-  //         <div onClick={() => navigate(`/detail/${id}`)}>
-  //           <div>
-  //             <h4>{word}</h4>
-  //             <span>{pronunciation}</span>
-  //           </div>
-  //           <p>{definition}</p>
-  //           <div>{exampleEn}</div>
-  //           <div>{exampleKo}</div>
-  //         </div>
-  //       </>
-  //     ) : (
-  //       <VocaUpdate voca={voca} dispatch={dispatch} setEditMode={setEditMode} />
-  //     )}
-  //   </article>
-  // );
+  const check = () => {
+    dispatch({ type: 'CHECK', id: voca.id });
+  };
 
   return (
-    <article>
-      <>
-        <div>
-          <button>암기 완료</button>
-          <Link to={`/voca/update/${id}`} state={{ voca: voca }}>
-            {/* <button onClick={() => navigate(`/voca/update`)}>수정하기</button> */}
-            <button>수정하기</button>
-          </Link>
-          <button onClick={() => remove()}>삭제</button>
-        </div>
-        <div onClick={() => navigate(`/detail/${id}`)}>
+    <Card checked={checked}>
+      <CardItem>
+        <Header>
+          <div>{word}</div>
           <div>
-            <h4>{word}</h4>
-            <span>{pronunciation}</span>
+            <ButtonStyle checked={checked}>
+              <BsCheck onClick={() => check()}></BsCheck>
+              <Link to={`/voca/update/${id}`} state={{ voca: voca }}>
+                <BiEdit></BiEdit>
+              </Link>
+              <BsX onClick={() => remove()}></BsX>
+            </ButtonStyle>
           </div>
+        </Header>
+        <div onClick={() => navigate(`/detail/${id}`)}>
+          <span>{pronunciation}</span>
           <p>{definition}</p>
           <div>{exampleEn}</div>
           <div>{exampleKo}</div>
         </div>
-      </>
-    </article>
+      </CardItem>
+    </Card>
   );
 };
 
 export default VocaListItem;
+
+const Card = styled.div`
+  display: flex;
+  /* flex-direction: row; */
+  /* justify-content: flex-start; */
+  gap: 20px;
+  width: 29%;
+  /* min-width: 100px; */
+  padding: 50px 0;
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid green;
+  background-color: ${(props) => (props.checked ? 'green' : 'white')};
+  color: ${(props) => (props.checked ? 'white' : 'black')};
+  transition: box-shadow 300ms ease-in-out;
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  }
+`;
+
+const Header = styled.div`
+  font-weight: 900;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const CardItem = styled.div`
+  flex: 1;
+  // max-width: calc(33%);
+  margin-bottom: 20px;
+  padding: 10px;
+  box-sizing: border-box;
+`;
+
+const ButtonStyle = styled.div`
+  font-size: 20px;
+  font-weight: 500px;
+  color: ${(props) => (props.checked ? 'white' : 'green')};
+`;

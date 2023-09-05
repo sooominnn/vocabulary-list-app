@@ -11,6 +11,7 @@ const App = () => {
   const [vocas, setVocas] = useState([
     {
       id: 1,
+      checked: false,
       word: 'Apple',
       pronunciation: '[æpl]',
       definition: '사과',
@@ -19,6 +20,7 @@ const App = () => {
     },
     {
       id: 2,
+      checked: false,
       word: 'Orange',
       pronunciation: '[ˈɔrɪndʒ]',
       definition: '오렌지',
@@ -27,6 +29,61 @@ const App = () => {
     },
     {
       id: 3,
+      checked: false,
+      word: 'Banana',
+      pronunciation: '[bəˈnænə]',
+      definition: '바나나',
+      exampleEn: 'Banana is fruit',
+      exampleKo: '바나나는 과일이다',
+    },
+    {
+      id: 4,
+      checked: false,
+      word: 'Apple',
+      pronunciation: '[æpl]',
+      definition: '사과',
+      exampleEn: 'Apple is fruit',
+      exampleKo: '사과는 과일이다',
+    },
+    {
+      id: 5,
+      checked: false,
+      word: 'Orange',
+      pronunciation: '[ˈɔrɪndʒ]',
+      definition: '오렌지',
+      exampleEn: 'Orange is fruit',
+      exampleKo: '오렌지는 과일이다',
+    },
+    {
+      id: 6,
+      checked: false,
+      word: 'Banana',
+      pronunciation: '[bəˈnænə]',
+      definition: '바나나',
+      exampleEn: 'Banana is fruit',
+      exampleKo: '바나나는 과일이다',
+    },
+    {
+      id: 7,
+      checked: false,
+      word: 'Apple',
+      pronunciation: '[æpl]',
+      definition: '사과',
+      exampleEn: 'Apple is fruit',
+      exampleKo: '사과는 과일이다',
+    },
+    {
+      id: 8,
+      checked: false,
+      word: 'Orange',
+      pronunciation: '[ˈɔrɪndʒ]',
+      definition: '오렌지',
+      exampleEn: 'Orange is fruit',
+      exampleKo: '오렌지는 과일이다',
+    },
+    {
+      id: 9,
+      checked: false,
       word: 'Banana',
       pronunciation: '[bəˈnænə]',
       definition: '바나나',
@@ -44,6 +101,7 @@ const App = () => {
       case 'ADD':
         return state.concat({
           id: nextId,
+          checked: action.checked,
           word: action.word,
           pronunciation: action.pronunciation,
           definition: action.definition,
@@ -55,6 +113,10 @@ const App = () => {
       case 'EDIT':
         return state.map((voca) =>
           voca.id == action.id ? { ...action } : voca
+        );
+      case 'CHECK':
+        return state.map((voca) =>
+          voca.id == action.id ? { ...voca, checked: !voca.checked } : voca
         );
       default:
         return state;

@@ -1,5 +1,8 @@
 /* eslint-disable */
 import React, { useState } from 'react';
+import styled from 'styled-components';
+import Header from '../components/Header';
+
 import { useNavigate } from 'react-router-dom';
 
 const VocaAdd = ({ dispatch }) => {
@@ -52,52 +55,109 @@ const VocaAdd = ({ dispatch }) => {
 
   return (
     <form>
-      <h1>단어 추가하기</h1>
-      <div>
-        <h5>단어</h5>
-        <input type='text' name='word' value={voca.word} onChange={onChange} />
-      </div>
-      <div>
-        <h5>발음</h5>
-        <input
-          type='text'
-          name='pronunciation'
-          value={voca.pronunciation}
-          onChange={onChange}
-        />
-      </div>
-      <div>
-        <h5>의미</h5>
-        <input
-          type='text'
-          name='definition'
-          value={voca.definition}
-          onChange={onChange}
-        />
-      </div>
-      <div>
-        <h5>예문</h5>
-        <input
-          type='text'
-          name='exampleEn'
-          value={voca.exampleEn}
-          onChange={onChange}
-        />
-      </div>
-      <div>
-        <h5>해석</h5>
-        <input
-          type='text'
-          name='exampleKo'
-          value={voca.exampleKo}
-          onChange={onChange}
-        />
+      <Container>
+        <Header />
+        <Subtitle>단어 추가하기</Subtitle>
         <div>
-          <button onClick={onSubmit}>저장하기</button>
+          <h5>단어</h5>
+          <Input
+            type='text'
+            name='word'
+            size={60}
+            value={voca.word}
+            onChange={onChange}
+          />
         </div>
-      </div>
+        <div>
+          <h5>발음</h5>
+          <Input
+            type='text'
+            name='pronunciation'
+            size={60}
+            value={voca.pronunciation}
+            onChange={onChange}
+          />
+        </div>
+        <div>
+          <h5>의미</h5>
+          <Input
+            type='text'
+            name='definition'
+            size={60}
+            value={voca.definition}
+            onChange={onChange}
+          />
+        </div>
+        <div>
+          <h5>예문</h5>
+          <Input
+            type='text'
+            name='exampleEn'
+            size={60}
+            value={voca.exampleEn}
+            onChange={onChange}
+          />
+        </div>
+        <div>
+          <h5>해석</h5>
+          <Input
+            type='text'
+            name='exampleKo'
+            size={60}
+            value={voca.exampleKo}
+            onChange={onChange}
+          />
+        </div>
+      </Container>
+      <SaveBtn onClick={onSubmit}>저장하기</SaveBtn>
     </form>
   );
 };
 
 export default VocaAdd;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 400px;
+  margin: 50px auto;
+  margin-top: 100px;
+`;
+
+const Subtitle = styled.h2`
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+`;
+
+const Input = styled.input`
+  height: 28px;
+  padding: 5px 0;
+  font-weight: 500;
+  transition: border-color 300ms ease-in-out;
+  border: none;
+  border-bottom: 2px solid lightgreen;
+  font-size: 20;
+  font-weight: 500;
+  transition: border-color 300ms ease-in-out;
+  outline: none;
+  &:focus {
+    border-color: green;
+  }
+`;
+
+const SaveBtn = styled.button`
+  justify-content: center;
+  color: white;
+  background-color: green;
+  width: 200px;
+  height: 40px;
+  border: none;
+  margin: auto;
+  display: flex;
+  align-items: center;
+`;
