@@ -38,7 +38,7 @@ const VocaListItem = ({ voca, dispatch }) => {
         </Header>
         <div onClick={() => navigate(`/detail/${id}`)}>
           <span>{pronunciation}</span>
-          <p>{definition}</p>
+          <div>{definition}</div>
           <div>{exampleEn}</div>
           <div>{exampleKo}</div>
         </div>
